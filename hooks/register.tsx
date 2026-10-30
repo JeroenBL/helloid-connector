@@ -20,7 +20,7 @@ const overview = atom(
 )
 // Set while /ai-reviewer runs: the connector and the files it has read so far.
 const reviewing = atom({ plugin: 'helloid-connector', key: 'reviewing' } as const, null)
-// Set while /helloid-v1-to-v2 runs: the connector and the script it touched last.
+// Set while /connector-v1-v2 runs: the connector and the script it touched last.
 const converting = atom({ plugin: 'helloid-connector', key: 'converting' } as const, null)
 const notice = atom({ plugin: 'helloid-connector', key: 'notice' } as const, null)
 const filter = atom({ plugin: 'helloid-connector', key: 'filter' } as const, '')
@@ -592,7 +592,7 @@ async function load($: EngineInterface, root: string, action: string | undefined
     releases: analysis.releases,
     remote: remotes.get(root)?.value,
     hasReviewer: await hasCommand($, 'ai-reviewer'),
-    hasConverter: await hasCommand($, 'helloid-v1-to-v2'),
+    hasConverter: await hasCommand($, 'connector-v1-v2'),
     scripts,
     endpoints: analysis.endpoints,
     config: analysis.config,
@@ -792,7 +792,7 @@ const reviewConnector = ($: EngineInterface, root: string) =>
   fillCommand($, 'ai-reviewer', root, 'the AI review')
 
 const convertConnector = ($: EngineInterface, root: string) =>
-  fillCommand($, 'helloid-v1-to-v2', root, 'the V1 to V2 conversion')
+  fillCommand($, 'connector-v1-v2', root, 'the V1 to V2 conversion')
 
 // The pane opens by itself once per load, the first time a connector shows up.
 let hasOpened = false
@@ -909,11 +909,11 @@ export const register: Register = on => {
         locate(await $.session.cwd())?.root
       if (root) await update($, reviewing, () => ({ root, files: [] }))
     }
-    // A conversion starts the same way, with /helloid-v1-to-v2 <connector>.
-    if (/^\/helloid-v1-to-v2\b/i.test(e.text)) {
+    // A conversion starts the same way, with /connector-v1-v2 <connector>.
+    if (/^\/connector-v1-v2\b/i.test(e.text)) {
       const seen = await read($, overview)
       const root =
-        locate(e.text.replace(/^\/helloid-v1-to-v2\s*/i, ''))?.root ??
+        locate(e.text.replace(/^\/connector-v1-v2\s*/i, ''))?.root ??
         seen?.root ??
         locate(await $.session.cwd())?.root
       if (root) {
@@ -975,7 +975,7 @@ export const register: Register = on => {
       }
     }
     // The conversion may also start through the Skill tool, without a typed command.
-    if (e.tool === 'Skill' && /helloid-v1-to-v2$/i.test(e.skill) && !(await read($, converting))) {
+    if (e.tool === 'Skill' && /connector-v1-v2$/i.test(e.skill) && !(await read($, converting))) {
       const root = (await read($, overview))?.root ?? locate(await $.session.cwd())?.root
       if (root) await startConversion($, root)
     }

@@ -64,7 +64,7 @@ export type ScriptVersion = 'V1' | 'V2' | 'mixed'
 // One script's generation; a script with neither marker is left out.
 export type ScriptGeneration = 'V1' | 'V2'
 
-// Set while /helloid-v1-to-v2 runs: the connector and the script it touched last.
+// Set while /connector-v1-v2 runs: the connector and the script it touched last.
 export type Converting = {
   root: string
   // The scripts the connector had when the conversion started (those with a
@@ -96,7 +96,7 @@ export type Overview = {
   remote?: Remote
   // Whether /ai-reviewer is installed; without it the review button is left out.
   hasReviewer: boolean
-  // Whether /helloid-v1-to-v2 is installed; without it the convert button is left out.
+  // Whether /connector-v1-v2 is installed; without it the convert button is left out.
   hasConverter: boolean
   scripts: string[]
   endpoints: Endpoint[]

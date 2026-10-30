@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep A Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-10-30
+
+### Changed
+
+- The V1 to V2 skill is now called `/connector-v1-v2` (was `/helloid-v1-to-v2`). The **⇢ Convert to V2** button, the check for the skill and the detection of a running conversion use the new name; with the old skill name the button is left out.
+
 ## [0.2.0] - 2026-10-30
 
 ### Added

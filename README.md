@@ -5,12 +5,12 @@
 A Claude Code mod that shows a pane for the HelloID connector you are working in. Open a file in a
 `HelloID-Conn-*` folder (or `/cd` into one) and the pane fills with the connector's scripts, endpoints,
 configuration and versions. It also starts a few actions from the pane: a download of the version on GitHub, and, when the optional
-`/ai-reviewer` and `/helloid-v1-to-v2` commands are installed, an AI review and a V1 to V2 conversion.
+`/ai-reviewer` and `/connector-v1-v2` commands are installed, an AI review and a V1 to V2 conversion.
 
 ![The connector overview pane for a V1 connector: next step, AI review, GitHub, files, configuration and endpoints](assets/pane.png)
 
 *The **▶ AI review** and **⇢ Convert to V2** buttons are optional: they only show when `/ai-reviewer` and
-`/helloid-v1-to-v2` are installed.*
+`/connector-v1-v2` are installed.*
 
 It is built around **target** connectors (`HelloID-Conn-Prov-Target-*`): the lifecycle scripts, the permission
 scripts and the field mapping. It opens for any `HelloID-Conn-*` folder, but the target-only sections are not
@@ -41,7 +41,7 @@ start Claude Code with `claude --plugin-dir <path to this folder>`.
 The GitHub card only looks at repositories under `Tools4everBV` (see Limitations).
 
 **Optional commands.** The **▶ AI review** and **⇢ Convert to V2** buttons only appear when the commands behind
-them are installed: `/ai-reviewer` (writes the review the AI review card shows) and `/helloid-v1-to-v2` (the V1 to
+them are installed: `/ai-reviewer` (writes the review the AI review card shows) and `/connector-v1-v2` (the V1 to
 V2 conversion skill). Without them the pane still shows the connector, GitHub state and endpoints.
 
 ## Command
@@ -102,14 +102,14 @@ The buttons depend on commands from elsewhere. Without them the button is simply
 | Button | Needs |
 |---|---|
 | ▶ AI review | the `/ai-reviewer` command, which writes `~/.claude/ai-reviews/<connector>.json` |
-| ⇢ Convert to V2 | the `/helloid-v1-to-v2` skill |
+| ⇢ Convert to V2 | the `/connector-v1-v2` skill |
 | ⇩ Download | `git` on the PATH, and network access to GitHub |
 
 The mod checks for the commands with `$.command.list()` on every load.
 
 ## Converting from V1 to V2
 
-Press **⇢ Convert to V2** (it fills `/helloid-v1-to-v2 <connector>` in the prompt box), or type the command
+Press **⇢ Convert to V2** (it fills `/connector-v1-v2 <connector>` in the prompt box), or type the command
 yourself. When it is submitted:
 
 1. The model is told, beside your prompt, to convert in place, not to create copies, and never to move or delete a

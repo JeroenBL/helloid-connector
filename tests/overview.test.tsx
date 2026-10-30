@@ -71,7 +71,7 @@ function engine(
   cwd: () => string,
   onOpen = () => {},
   script: string | ((path: string) => string) = SCRIPT,
-  commands = ['ai-reviewer', 'helloid-v1-to-v2'],
+  commands = ['ai-reviewer', 'connector-v1-v2'],
   // The release on GitHub; null stands for a repository that is not there (404).
   remote: string | null = '1.3.0',
 ) {
@@ -330,7 +330,7 @@ test('a running conversion shows how many scripts are on V2 and which one was to
   await $.session.start({ cwd: 'C:/code', surface: 'desktop', isInteractive: true })
   await $.tool.call({ tool: 'Read', file_path: `${connector}/create.ps1` })
 
-  await $.prompt.submit({ text: `/helloid-v1-to-v2 ${connector}` })
+  await $.prompt.submit({ text: `/connector-v1-v2 ${connector}` })
   let ui = await $.ui.mount({ ...PANE, surface: 'desktop' })
   expect(await ui.find({ type: 'Text', text: /^Converting…$/ })).toBeTruthy()
   // Six scripts and the two documents (fieldMapping.json, README.md) are the eight steps.
@@ -414,7 +414,7 @@ test('a conversion keeps its card when a tool call spells the folder another way
   await $.tool.call({ tool: 'Read', file_path: 'C:/code/HelloID-Conn-Prov-Target-Spelled/create.ps1' })
 
   // The command says backslashes and a lower-case drive; the writes say forward slashes.
-  await $.prompt.submit({ text: '/helloid-v1-to-v2 C:/code/HelloID-Conn-Prov-Target-Spelled' })
+  await $.prompt.submit({ text: '/connector-v1-v2 C:/code/HelloID-Conn-Prov-Target-Spelled' })
   converted.add('create.ps1')
   await $.tool.call({ tool: 'Write', file_path: 'c:\\code\\HelloID-Conn-Prov-Target-Spelled\\create.ps1', content: '' })
   const ui = await $.ui.mount({ ...PANE, surface: 'desktop' })
@@ -430,7 +430,7 @@ test('a script that leaves the disk mid-conversion stays in the lifecycle, waiti
   on('prompt.submit', (_, e) => ({ text: e.text }))
   await $.session.start({ cwd: 'C:/code', surface: 'desktop', isInteractive: true })
   await $.tool.call({ tool: 'Read', file_path: `${connector}/create.ps1` })
-  await $.prompt.submit({ text: `/helloid-v1-to-v2 ${connector}` })
+  await $.prompt.submit({ text: `/connector-v1-v2 ${connector}` })
 
   hidden.add('update.ps1')
   try {
@@ -467,7 +467,7 @@ test('permission scripts in the root are grouped as permissions, by their names'
   }
 })
 
-test('without /helloid-v1-to-v2 a V1 connector keeps its badge but has no convert button', async ($, on) => {
+test('without /connector-v1-v2 a V1 connector keeps its badge but has no convert button', async ($, on) => {
   engine(on, () => 'C:/code', () => {}, V1_SCRIPT, ['ai-reviewer'])
   await $.session.start({ cwd: 'C:/code', surface: 'desktop', isInteractive: true })
   await $.tool.call({ tool: 'Read', file_path: 'C:/code/HelloID-Conn-Prov-Target-NoConverter/create.ps1' })
