@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="helloid-connector">
+  <rect width="256" height="256" rx="56" fill="#262626"/>
+  <rect x="86" y="56" width="144" height="84" rx="16" fill="#262626" stroke="#F472B6" stroke-width="7"/>
+  <rect x="66" y="76" width="144" height="84" rx="16" fill="#262626" stroke="#FBBF24" stroke-width="7"/>
+  <rect x="46" y="96" width="144" height="84" rx="16" fill="#262626" stroke="#2DD4BF" stroke-width="7"/>
+  <rect x="26" y="116" width="144" height="84" rx="16" fill="#262626" stroke="#A78BFA" stroke-width="7"/>
+  <g transform="translate(-7 0)" fill="none" stroke="#A78BFA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M62 134V182M62 158Q62 148 72 148Q82 148 82 158V182"/>
+    <path d="M121.7 157.0A14 14 0 1 0 121.7 175.0"/>
+    <path d="M126 182H148"/>
+  </g>
+</svg>

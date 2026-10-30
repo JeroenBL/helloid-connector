@@ -1,0 +1,5 @@
+{
+  "name": "helloid-connector",
+  "owner": { "name": "JeroenBL" },
+  "plugins": [{ "name": "helloid-connector", "source": "./" }]
+}
